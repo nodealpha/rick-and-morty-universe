@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header />
     <div class="wrapper">
       <transition name="fade">
         <router-view></router-view>
@@ -10,10 +11,12 @@
 </template>
 
 <script>
+import Header from './Header'
 
 export default {
   name: 'AppLayout',
   components: {
+    Header
   }
 }
 </script>
