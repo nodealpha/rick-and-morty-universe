@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'
 
 import AppLayout from './layout/index.vue'
 import router from './router'
