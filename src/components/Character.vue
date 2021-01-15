@@ -9,14 +9,8 @@
     <div class="container">
       <div class="head">
         <div class="title-wrap">
-          <div class="title">
-            {{ data.name.trim() }}
-          </div>
-          <div class="sub-title-wrap">
-            <div class="sub-title">
-              {{ data.gender }}
-            </div>
-          </div>
+          <Title :type="'h4'">{{ data.name.trim() }}</Title>
+          <div class="sub-title">{{ data.gender }}</div>
         </div>
       </div>
       <div class="action">
@@ -27,7 +21,13 @@
 </template>
 
 <script>
+import Title from '@/components/Title.vue'
+
 export default {
+  name: 'Character',
+  components: {
+    Title
+  },
   props: {
     data: {
       type: Object
@@ -49,10 +49,11 @@ export default {
   .comp-character {
     width: 100%;
     height: 100%;
-    border: 1px solid #e5e5e5;
     border-radius: 5px;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    padding-bottom: 70px;
   }
   .comp-character .avatar {
     width: 100%;
@@ -72,6 +73,8 @@ export default {
     position: absolute;
     top: 8px;
     left: 8px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    text-transform: capitalize;
   }
   .comp-character .badge.active {
     background-color: #00da4d;
@@ -95,25 +98,18 @@ export default {
     width: 100%;
   }
 
-  .comp-character .title-wrap .title {
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
+  .comp-character .title-wrap .comp-title {
     text-align: center;
-    line-height: 20px;
-  }
-
-  .comp-character .title-wrap .sub-title-wrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 8px;
+    line-height: 1.5;
   }
 
   .comp-character .title-wrap .sub-title {
     font-size: 14px;
     font-weight: normal;
+    font-weight: 600;
+    color: #808080;
+    text-align: center;
+    margin-top: 8px;
   }
   .comp-character .title-wrap .sub-title:not(:last-child) {
     margin-right: 16px;
@@ -133,19 +129,30 @@ export default {
   }
 
   .comp-character .action {
+    width: 100%;
     margin-top: 16px;
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .comp-character .action button {
     cursor: pointer;
     background-color: transparent;
-    border: 1px solid #0d54f5;
+    border: 1px solid #1565C0;
     outline: 0;
     line-height: 30px;
     font-size: 14px;
     font-weight: 600;
     padding: 0 16px;
     border-radius: 5px;
-    color: #0d54f5;
+    color: #1565C0;
     text-transform: uppercase;
+  }
+  .comp-character .action button:hover {
+    background-color: #1565C0;
+    color: #fff;
   }
 </style>

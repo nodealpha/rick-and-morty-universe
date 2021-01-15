@@ -1,6 +1,8 @@
 <template>
   <div class="comp-location">
-    <div v-if="data.name" class="title">{{ data.name }}</div>
+    <div v-if="data.name" class="title-wrap">
+      <Title :type="'h2'">{{ data.name }}</Title>
+    </div>
     <div class="sub-title">{{ data.type }}</div>
     <div class="pairs">
       <div class="key">Created on</div>
@@ -23,10 +25,15 @@
 <script>
 import moment from 'moment'
 
+import Title from '@/components/Title.vue'
+
 import { datetime } from '@/config'
 
 export default {
   name: 'Location',
+  components: {
+    Title
+  },
   props: {
     loading: {
       type: Boolean,
@@ -46,14 +53,10 @@ export default {
   .comp-location {
     width: 100%;
     min-height: 50px;
-    border: 1px solid #e5e5e5;
     border-radius: 3px;
     padding: 24px;
     background-color: #f9f9f9;
-  }
-  .comp-location .title {
-    font-size: 16px;
-    font-weight: 600;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   }
   .comp-location .sub-title {
     font-size: 14px;
@@ -68,6 +71,7 @@ export default {
   .comp-location .pairs .key {
     font-size: 12px;
     font-weight: 600;
+    color: #808080;
   }
   .comp-location .pairs .value {
     font-size: 14px;
@@ -82,12 +86,16 @@ export default {
   .comp-location .link-btn button {
     background-color: transparent;
     border: 0;
-    border-radius: 5px;
     cursor: pointer;
     outline: none;
-    line-height: 1;
+    line-height: 1.5;
     font-weight: 600;
-    color: #0d54f5;
+    color: #1565C0;
     text-transform: uppercase;
+    transition: margin .1s ease;
+  }
+  .comp-location .link-btn button:hover {
+    color: #FF9100;
+    margin-left: 3px;
   }
 </style>

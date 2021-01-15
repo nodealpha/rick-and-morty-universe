@@ -30,15 +30,20 @@
         </div>
         <div class="episode">
           <div class="title">Episodes</div>
-          <div v-if="loadingEpisodes" class="loading">Loading episodes....</div>
+          <div v-if="loadingEpisodes" class="episode-loading">
+            <div class="skeleton-i"><EpisodeSkeleton /></div>
+          </div>
           <div v-for="episode in episodes" class="episode-i" :key="episode.id" v-else>
             <Episode :data="episode" />
           </div>
         </div>
       </div>
     </div>
-    <div class="back">
-      <button @click="goBack">Back</button>
+    <div class="back-btn">
+      <button @click="goBack">
+        <div class="icon-wrap"><i class="fas fa-arrow-left"></i></div>
+        Back
+      </button>
     </div>
   </div>
 </template>
@@ -49,15 +54,17 @@ import moment from 'moment'
 import { datetime } from '@/config'
 import CharacterService from '@/services/character.js'
 import Episode from '@/components/Episode.vue'
+import EpisodeSkeleton from '@/components/EpisodeSkeleton.vue'
 
 export default {
   components: {
-    Episode
+    Episode,
+    EpisodeSkeleton
   },
   data () {
     return {
       loading: false,
-      loadingEpisodes: false,
+      loadingEpisodes: !false,
       character: {},
       episodes: []
     }
@@ -117,6 +124,9 @@ export default {
     padding-left: 50px;
     font-size: 16px;
     font-weight: normal;
+  }
+  .view-character > .loading .skeleton-i {
+    width: 200px;
   }
 
   .view-character .container {
@@ -182,19 +192,29 @@ export default {
     color: #000;
   }
 
-  .view-character .back {
+  .view-character .back-btn {
     position: absolute;
     top: 24px;
     left: 50px;
   }
 
-  .view-character .back button {
+  .view-character .back-btn button {
     background-color: transparent;
     border: 0;
     outline: 0;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+  .view-character .back-btn button .icon-wrap {
+    margin-right: 8px;
+    transition: transform .1s linear;
+    color: #F50057;
+  }
+  .view-character .back-btn button:hover .icon-wrap {
+    transform: translate(-4px, 0);
   }
   .view-character .details .split-view {
     display: grid;
@@ -225,5 +245,8 @@ export default {
   }
   .view-character .details .episode .episode-i:not(:last-child) {
     margin-bottom: 24px;
+  }
+  .episode-loading .skeleton-i {
+    width: 300px;
   }
 </style>
