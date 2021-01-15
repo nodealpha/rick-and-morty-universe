@@ -30,7 +30,8 @@
         </div>
         <div class="episode">
           <div class="title">Episodes</div>
-          <div v-for="episode in episodes" class="episode-i" :key="episode.id">
+          <div v-if="loadingEpisodes" class="loading">Loading episodes....</div>
+          <div v-for="episode in episodes" class="episode-i" :key="episode.id" v-else>
             <Episode :data="episode" />
           </div>
         </div>
@@ -56,6 +57,7 @@ export default {
   data () {
     return {
       loading: false,
+      loadingEpisodes: false,
       character: {},
       episodes: []
     }
@@ -79,12 +81,11 @@ export default {
       }
     },
     async getEpisodes () {
-      console.log('this.character', this.character)
       if (!this.character) {
         return
       }
       try {
-        this.loading = true
+        this.loadingEpisodes = true
         const episodes = this.character.episode
         for (let i = 0; i < episodes.length; i++) {
           const episodeId = episodes[i].split('/').pop()
@@ -94,7 +95,7 @@ export default {
       } catch (err) {
         console.error('err', err)
       } finally {
-        this.loading = false
+        this.loadingEpisodes = false
       }
     }
   },

@@ -3,21 +3,23 @@
     <div class="loading" v-if="loading">Loading...</div>
     <div class="container" v-else>
       <div class="title">Locations ({{ locations.length }})</div>
-      <div class="locations">
+      <div class="locations" v-if="locations.length">
         <div class="location" v-for="location in locations" :key="location.name">
           <Location :data="location" v-on:click="onLocationClick" />
         </div>
       </div>
+      <div class="not-found" v-else>No Location exist</div>
       <div v-if="showModal" class="modal-wrap">
         <Modal v-on:close="closeModal">
           <div class="characters">
-            <div class="loading" v-if="modalLoading">
-              Loading characters...
-            </div>
-            <div class="character-wrap" v-else>
+            <div class="character-wrap" v-if="characters.length">
               <div class="character" v-for="char in characters" :key="char.id">
                 <Character :data="char" />
               </div>
+            </div>
+            <div class="not-found" v-else>No characters exist</div>
+            <div class="loading" v-if="modalLoading">
+              Loading characters...
             </div>
           </div>
         </Modal>
@@ -72,7 +74,7 @@ export default {
       try {
         this.modalLoading = true
         const residents = location.residents
-        const chars = []
+        this.characters = []
         for (let i = 0; i < residents.length; i++) {
           const resident = residents[i]
           if (!resident) {
@@ -80,9 +82,8 @@ export default {
           }
           const charId = resident.split('/').pop()
           const char = await CharacterService.get(charId)
-          chars.push(char)
+          this.characters.push(char)
         }
-        this.characters = chars
       } catch (err) {
         console.error('err', err)
       } finally {
@@ -141,5 +142,15 @@ export default {
     font-weight: 600;
     width: 100%;
     min-height: inherit;
+  }
+  .not-found {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: inherit;
+    height: 100%;
+    font-size: 16px;
+    font-weight: 600;
   }
 </style>

@@ -11,6 +11,11 @@ import './scss/style.scss'
 
 Vue.config.productionTip = false
 
+// Register service worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('serviceWorker.js')
+}
+
 new Vue({
   name: 'Root',
   router,
