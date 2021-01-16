@@ -98,7 +98,9 @@ class SW {
   install = (e) => {
     e.waitUntil(
       caches.open(cacheName).then(function (cache) {
-        return cache.addAll(['']);
+        return cache.addAll([
+          '/index.html'
+        ]);
       }),
     );
   };

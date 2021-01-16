@@ -61,7 +61,7 @@ export default {
   .comp-location .sub-title {
     font-size: 14px;
     font-weight: normal;
-    color: #9290ad;
+    color: #616161;
     margin-top: 5px;
   }
 
@@ -71,7 +71,7 @@ export default {
   .comp-location .pairs .key {
     font-size: 12px;
     font-weight: 600;
-    color: #808080;
+    color: #616161;
   }
   .comp-location .pairs .value {
     font-size: 14px;
