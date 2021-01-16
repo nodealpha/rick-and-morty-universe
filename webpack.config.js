@@ -3,5 +3,5 @@ module.exports = {
     alias: {
       '@': require('path').resolve(__dirname, 'src')
     }
-  },
+  }
 }

@@ -16,5 +16,5 @@ module.exports = {
     watchOptions: {
       clientLogLevel: 'warning'
     }
-  },
+  }
 }
