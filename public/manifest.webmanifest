@@ -1,0 +1,24 @@
+{
+  "short_name": "Rick and Morty Universe",
+  "name": "Rick and Morty universe & their characters",
+  "description": "Application showcasing Rick & Marty universe",
+  "icons": [
+    {
+      "src": "images/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#00E5FF",
+  "background_color": "#EFEEED"
+}
